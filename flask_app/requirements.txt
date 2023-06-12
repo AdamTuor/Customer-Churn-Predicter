@@ -4,7 +4,7 @@ dash_html_components==2.0.0
 Flask==1.1.2
 ipython==7.31.1
 joblib==1.2.0
-matplotlib==3.7.1
+matplotlib==3.5.3
 numpy==1.21.6
 pandas==1.4.4
 plotly==5.9.0

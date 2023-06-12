@@ -1,4 +1,4 @@
-from flask import Flask, request
+
 from dash import Dash
 import dash_core_components as dcc
 import dash_html_components as html

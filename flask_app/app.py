@@ -17,10 +17,11 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Initialize Flask server
-server = Flask(__name__)
+#server = Flask(__name__)
 
 # Initialize Dash app
-app = Dash(__name__, server=server)
+app = Dash(__name__)
+server = app.server
 
 # Define Dash layout
 app.layout = app.layout = html.Div([

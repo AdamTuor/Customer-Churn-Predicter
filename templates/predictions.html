@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telco Churn Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class='container-fluid'>
+        <div class="jumbotron specialjum">
+            <h2 class="display-1">Will a Telecom cocustomer want to churn?</h2>
+            <p>What is customer churn? Customer churn is the percentage of customers
+                who stopped purchasing business's products or services during a certain period of time.</p>
+            <p></p>
+            <h4 class="lead">Determining an outcome through the use of machine learning</h4>
+            <a href='/predict' class='button'>CHURN PREDICTION</a>
+        </div>
+    </div>
+
+    <!-- start of selection & prediction form -->
+    <div class='container-fluid'>
+        <div class="row">
+            <!-- Contract -->
+            <div class="col-md-3">
+                <div class="form-input">
+                    <br>
+                    <label for="Contract">Contract:</label>
+                    <br>
+                    <select id="contract">
+                        <option selected value="">Please choose one</option>
+                        <option value=1>One Year</option>
+                        <option value=2>Two Year</option>
+                        <option value=3>Month to Month</option>
+                    </select>
+                </div>
+            </div>
+            <br><br>
+
+            <!-- list for Internet Service -->
+            <div class="col-md-3">
+                <div class="form-input">
+                    <br>
+                    <label for="internet">Internet Service:</label>
+                    <br>
+                    <select id="internet">
+                        <option selected value="">Please choose one</option>
+                        <option value=1>DSL</option>
+                        <option value=0>Fiber optic</option>
+                        <option value=0>No Internet</option>
+                    </select>
+                </div>
+            </div>
+            <br><br>
+
+            <!--list for Payment Method-->
+            <div class="col-md-3">
+                <div class="form-input">
+                    <br>
+                    <label for="Paymentmethod">Payment Method:</label>
+                    <br>
+                    <select id="paymentmethod">
+                        <option selected value="">Please choose one</option>
+                        <option value=1>Bank transfer (automatic)</option>
+                        <option value=2>Credit card (automatic)</option>
+                        <option value=3>Electronic check</option>
+                        <option value=4>Mailed check</option>
+                    </select>
+                </div>
+            </div>
+            <br><br>
+
+            <!-- Tenure -->
+            <div class="col-md-3">
+                <div class="form-input">
+                    <br>
+                    <label for="Tenure">Tenure / months:</label>
+                    <br>
+                    <input type='text' id="tenure" placeholder=0>
+                </div>
+            </div>
+            <br><br>
+
+            <!-- predition buttons and output-->
+            <br></br>
+            <br></br>
+
+            <div class="col-md-12">
+                <button onclick=make_pred() class='btn btn-info'>CLICK to Prediction</button>
+                <button onClick="window.location.reload();" class='btn btn-info'>Refresh Selections</button>
+                <button onclick="history.back()" class='btn btn-info'>Go Back to Home Page</button>
+                
+                <div class="col-md-5">
+                    <h1 id="prediction"></h1>
+                    <img id="dummy" src="">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> -->
+
+    <script src="/static/js/prediction.js"></script>
+
+
+</body>
+
+</html>

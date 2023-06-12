@@ -1,0 +1,106 @@
+body {
+    background-color: rgb(39, 39, 39);
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 2px;
+    position: absolute;
+  
+  }
+  
+  a {
+    font-size: 40px; 
+    font-weight: bold;
+    font-family: Verdana, sans-serif;
+  }
+  
+  h3 {
+    font-size: 40px; 
+    font-weight: bold;
+    font-family: Verdana, sans-serif;
+    padding-left: 2%;
+  }
+  
+  p {
+    padding-left: 2%; 
+    font-family: Verdana, sans-serif;
+  }
+  
+  .jumbotron {
+    background: 
+    linear-gradient(
+      rgba(0, 0, 250, 0.25), 
+      rgba(125, 250, 250, 0.45)
+    ),
+    url("/static/images/churn-rate.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color:black !important;
+    height:100vh;
+    width:100%;
+    text-align: center;
+    font-family: 'Verdana', sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    }
+  
+  .tableauPlaceholder {
+    padding-left: .5%;
+    position: relative;
+  }
+  
+  
+  .button {
+      background-color: Transparent;
+      display: inline-block;
+      border: 2px solid #fff;
+      padding: 10px 20px;
+      color: #fff;
+      text-decoration: none;
+      transition: 0.3s;
+      border-radius: 12px;
+    }
+  
+  .button:hover {
+      background: #fff;
+      color: #000;
+    }
+  
+  .responsive-google-slides {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+    
+  .responsive-google-slides iframe {
+      border: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100% !important;
+      height: 100% !important;
+    }
+  
+  .wrapper
+  {
+    padding-bottom: 20px;
+  }
+  
+  .divider
+  {
+    position: relative;
+    margin-top: 10px;
+    height: 1px;
+  }
+  
+  .div-transparent:before
+  {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 2%;
+    right: 2%;
+    width: 95%;
+    height: 2px;
+    background-image: linear-gradient(to right, transparent, rgb(255, 255, 255), transparent);
+  }

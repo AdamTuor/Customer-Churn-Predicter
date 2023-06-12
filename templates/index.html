@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telco Churn Prediction</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+
+<body>
+    <div class='container-fluid'>
+        <div class="jumbotron specialjum">
+            <h2 class="display-1">Will a customer want to churn?</h2>
+            <p>What is customer churn? Customer churn is the percentage of customers
+                who stopped purchasing business's products or services during a certain period of time.</p>
+            <p></p>
+            <h4 class="lead">Determining an outcome through the use of machine learning</h4>
+            <a href='/predict' class='button'>CHURN PREDICTION</a>
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div id="pie01"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div id="pie02"></div>
+            </div>
+
+            <div class="col-md-4">
+                <div id="pie03"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <script src="/static/js/app.js"></script>
+
+</body>
+
+</html>

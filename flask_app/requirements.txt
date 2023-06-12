@@ -1,7 +1,6 @@
 dash==2.10.2
 dash_core_components==2.0.0
 dash_html_components==2.0.0
-Flask==1.1.2
 ipython==7.31.1
 joblib==1.2.0
 matplotlib==3.5.3

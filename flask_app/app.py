@@ -1,44 +1,3 @@
-# from flask import Flask, render_template, request
-# import pandas as pd
-# import flask_app.ETL as ETL
-# from sklearn.externals import joblib
-# import shap
-
-# app = Flask(__name__)
-# # Import model
-# model = joblib.load('model.joblib')
-
-# @app.route('/')
-# def index():
-#     return render_template('form.html')
-
-# @app.route('/predict', methods=['POST'])
-# def predict():
-#     # Extract form data
-#     form_data = request.form
-
-#     # Convert form data to dataframe
-#     data = pd.DataFrame([form_data])
-
-#     # Preprocess the data
-#     preprocessed_data, transformed_columns = ETL.preprocess_data(data)
-
-#     # Convert to DataFrame to retain column names
-#     preprocessed_data = pd.DataFrame(preprocessed_data, columns=transformed_columns)
-
-#     # Make prediction with your model
-#     prediction = model.predict(preprocessed_data)
-
-#     # Now explain the prediction with SHAP
-#     explainer = shap.TreeExplainer(model)
-#     shap_values = explainer.shap_values(preprocessed_data)
-
-#     # Get SHAP values for the first prediction
-#     shap_values_for_prediction = shap_values[0]
-
-#     # Render a new template and pass prediction and SHAP values
-#     return render_template('prediction.html', prediction=prediction[0], shap_values=shap_values_for_prediction)
-
 from flask import Flask, request
 from dash import Dash
 import dash_core_components as dcc
@@ -55,6 +14,7 @@ import io
 import base64
 from IPython.display import HTML
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Initialize Flask server
 server = Flask(__name__)
@@ -71,7 +31,7 @@ app.layout = app.layout = html.Div([
     dcc.Input(id='tenure',type='text',placeholder='Enture tenure(months)'),
     dcc.Dropdown(id='phone-service-dropdown', options=[{'label': 'Yes', 'value': 'Yes'}, {'label': 'No', 'value': 'No'}], placeholder='Select Phone Service'),
     dcc.Dropdown(id='multiple-lines-dropdown', options=[{'label': 'No phone service', 'value': 'No phone service'},{'label': 'Yes', 'value': 'Yes'}, {'label': 'No', 'value': 'No'}], placeholder='Select Multiple Lines'),
-    dcc.Dropdown(id='internet-service-dropdown', options=[{'label': 'DSL', 'value': 'DSL'},{'label': 'Fiber optic', 'value': 'Fiber Optic'}, {'label': 'No', 'value': 'No'}], placeholder='Select Internet Service'),
+    dcc.Dropdown(id='internet-service-dropdown', options=[{'label': 'DSL', 'value': 'DSL'},{'label': 'Fiber optic', 'value': 'Fiber optic'}, {'label': 'No', 'value': 'No'}], placeholder='Select Internet Service'),
     dcc.Dropdown(id='online-security-dropdown', options=[{'label': 'Yes', 'value': 'Yes'},{'label': 'No', 'value': 'No'}, {'label': 'No internet service', 'value': 'No internet service'}], placeholder='Select Online Security'),
     dcc.Dropdown(id='online-backup-dropdown', options=[{'label': 'Yes', 'value': 'Yes'},{'label': 'No', 'value': 'No'}, {'label': 'No internet service', 'value': 'No internet service'}], placeholder='Select Online Backup'),
     dcc.Dropdown(id='device-protection-dropdown', options=[{'label': 'Yes', 'value': 'Yes'},{'label': 'No', 'value': 'No'}, {'label': 'No internet service', 'value': 'No internet service'}], placeholder='Select Device Protection'),
@@ -115,126 +75,23 @@ app.layout = app.layout = html.Div([
         State('total-charges', 'value')
     ]
 )
-# def update_output(n_clicks, gender, senior, partner, dependents, tenure, phone_service, multiple_lines, internet_service, online_security, online_backup, device_protection, tech_support, streaming_tv, streaming_movies, contract, paperless_billing, payment_method, monthly_charges, total_charges):
-#     if n_clicks is not None and n_clicks > 0:
-#         # Create a dictionary with the form data
-#         form_data = {
-#             'gender': gender,
-#             'SeniorCitizen': senior,
-#             'Partner': partner,
-#             'Dependents': dependents,
-#             'tenure': tenure,
-#             'PhoneService': phone_service,
-#             'MultipleLines': multiple_lines,
-#             'InternetService': internet_service,
-#             'OnlineSecurity': online_security,
-#             'OnlineBackup': online_backup,
-#             'DeviceProtection': device_protection,
-#             'TechSupport': tech_support,
-#             'StreamingTV': streaming_tv,
-#             'StreamingMovies': streaming_movies,
-#             'Contract': contract,
-#             'PaperlessBilling': paperless_billing,
-#             'PaymentMethod': payment_method,
-#             'MonthlyCharges': monthly_charges,
-#             'TotalCharges': total_charges
-#         }
-
-#         # Convert form data to dataframe
-#         data = pd.DataFrame([form_data])
-
-#         # Preprocess the data
-#         preprocessed_data, transformed_columns = ETL.preprocess_data(data)
-
-#         # Convert to DataFrame to retain column names
-#         preprocessed_data = pd.DataFrame(preprocessed_data, columns=transformed_columns)
-#         print(preprocessed_data)
-
-#         # Import model
-#         model = load('model.joblib')
-
-#         # Make prediction with your model
-#         prediction = model.predict(preprocessed_data)
-
-#         # Now explain the prediction with SHAP
-#         explainer = shap.TreeExplainer(model)
-#         shap_values = explainer.shap_values(preprocessed_data)
-
-#         # Get SHAP values for the first prediction
-#         shap_values_for_prediction = shap_values[0]
-
-#     # Return the prediction and SHAP values
-#     return f'Prediction: {prediction[0]}, SHAP values: {shap_values_for_prediction}'
-# def update_output(n_clicks, gender, senior, partner, dependents, tenure, phone_service, multiple_lines, internet_service, online_security, online_backup, device_protection, tech_support, streaming_tv, streaming_movies, contract, paperless_billing, payment_method, monthly_charges, total_charges):
-#     if n_clicks is not None and n_clicks > 0:
-#         # Create a dictionary with the form data
-#         form_data = {
-#             'gender': [gender],
-#             'SeniorCitizen': [senior],
-#             'Partner': [partner],
-#             'Dependents': [dependents],
-#             'tenure': [tenure],
-#             'PhoneService': [phone_service],
-#             'MultipleLines': [multiple_lines],
-#             'InternetService': [internet_service],
-#             'OnlineSecurity': [online_security],
-#             'OnlineBackup': [online_backup],
-#             'DeviceProtection': [device_protection],
-#             'TechSupport': [tech_support],
-#             'StreamingTV': [streaming_tv],
-#             'StreamingMovies': [streaming_movies],
-#             'Contract': [contract],
-#             'PaperlessBilling': [paperless_billing],
-#             'PaymentMethod': [payment_method],
-#             'MonthlyCharges': [monthly_charges],
-#             'TotalCharges': [total_charges]
-#         }
-
-#         # Create a dataframe with all columns
-#         columns = ['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService',
-#                    'MultipleLines', 'InternetService', 'OnlineSecurity', 'OnlineBackup',
-#                    'DeviceProtection', 'TechSupport', 'StreamingTV', 'StreamingMovies',
-#                    'Contract', 'PaperlessBilling', 'PaymentMethod', 'MonthlyCharges', 'TotalCharges']
-#         data = pd.DataFrame(form_data, columns=columns)
-
-#         # Preprocess the data
-#         preprocessed_data, transformed_columns = ETL.preprocess_data(data)
-
-#         # Convert to DataFrame to retain column names
-#         preprocessed_data = pd.DataFrame(preprocessed_data, columns=transformed_columns)
-
-#         # Print the shape and columns of the preprocessed data
-#         print("Preprocessed Data Shape:", preprocessed_data.shape)
-#         print("Preprocessed Data Columns:", preprocessed_data.columns)
-#         # Import model
-#         model = load('model.joblib')
-
-#         # Make prediction with your model
-#         prediction = model.predict(preprocessed_data)
-
-#         # Now explain the prediction with SHAP
-#         explainer = shap.TreeExplainer(model)
-#         shap_values = explainer.shap_values(preprocessed_data)
-#         shap_plot = shap.force_plot(explainer.expected_value[1], shap_values[1][0,:], preprocessed_data.iloc[0,:], feature_names=preprocessed_data.columns.tolist())
-#         shap_graph = dcc.Graph(figure=shap_plot)
-#         # Get SHAP values for the first prediction
-#         #shap_values_for_prediction = shap_values[0]
-#         return shap_graph
-#         # Return the prediction and SHAP values
-#         #return f'Prediction: {prediction[0]}, SHAP values: {shap_values_for_prediction}'
-
-#     return ''  # Return empty string if n_clicks is None or 0
-# # Run server
 
 def update_shap_plot(n_clicks, gender, senior, partner, dependents, tenure, phone_service, multiple_lines, internet_service, online_security, online_backup, device_protection, tech_support, streaming_tv, streaming_movies, contract, paperless_billing, payment_method, monthly_charges, total_charges):
     if n_clicks is not None and n_clicks > 0:
+        try:
+            tenure = int(tenure)
+            monthly_charges = float(monthly_charges)
+            total_charges = float(total_charges)
+        except ValueError:
+            return "Invalid input. Please enter valid numeric values for tenure, monthly charges, and total charges."
+
         # Create a dictionary with the form data
         form_data = {
             'gender': [gender],
             'SeniorCitizen': [senior],
             'Partner': [partner],
             'Dependents': [dependents],
-            'tenure': [tenure],
+            'tenure': [int(tenure)],
             'PhoneService': [phone_service],
             'MultipleLines': [multiple_lines],
             'InternetService': [internet_service],
@@ -247,9 +104,10 @@ def update_shap_plot(n_clicks, gender, senior, partner, dependents, tenure, phon
             'Contract': [contract],
             'PaperlessBilling': [paperless_billing],
             'PaymentMethod': [payment_method],
-            'MonthlyCharges': [monthly_charges],
-            'TotalCharges': [total_charges]
+            'MonthlyCharges': [float(monthly_charges)],
+            'TotalCharges': [float(total_charges)]
         }
+        print(form_data)
 
         # Create a dataframe with all columns
         columns = ['gender', 'SeniorCitizen', 'Partner', 'Dependents', 'tenure', 'PhoneService',
@@ -263,7 +121,8 @@ def update_shap_plot(n_clicks, gender, senior, partner, dependents, tenure, phon
 
         # Convert to DataFrame to retain column names
         preprocessed_data = pd.DataFrame(preprocessed_data, columns=transformed_columns)
-
+        # Reorder the columns based on the transformed_columns list
+        preprocessed_data = preprocessed_data[transformed_columns]      
         # Import model
         model = load('model.joblib')
 
@@ -275,9 +134,22 @@ def update_shap_plot(n_clicks, gender, senior, partner, dependents, tenure, phon
         explainer = shap.TreeExplainer(model)
         shap_values = explainer.shap_values(preprocessed_data)
         #shap_summary_plot = shap.summary_plot(shap_values, preprocessed_data)
+        # Get the absolute SHAP values for each feature
+        abs_shap_values = np.abs(shap_values[1][0,:])
+
+        # Get the indices that would sort the SHAP values
+        sorted_indices = np.argsort(abs_shap_values)
+
+        # Select the indices of the top N features
+        top_n_indices = sorted_indices[-6:]
+
+        # Select only the top N features and SHAP values
+        selected_features = preprocessed_data.iloc[0, top_n_indices]
+        selected_shap_values = shap_values[1][0, top_n_indices]
 
         # Create SHAP force plot
-        shap.force_plot(explainer.expected_value[1], shap_values[1][0,:], preprocessed_data.iloc[0,:], feature_names=preprocessed_data.columns.tolist(), matplotlib=True, show=False)
+        shap.force_plot(explainer.expected_value[1], selected_shap_values, selected_features, feature_names=selected_features.index.tolist(), matplotlib=True, show=False)
+        #shap.force_plot(explainer.expected_value[1], shap_values[1][0,:], preprocessed_data.iloc[0,:], feature_names=preprocessed_data.columns.tolist(), matplotlib=True, show=False)
 
         # Save the plot as an image in memory
         buffer = io.BytesIO()
@@ -293,13 +165,7 @@ def update_shap_plot(n_clicks, gender, senior, partner, dependents, tenure, phon
         return html.Img(src='data:image/png;base64,{}'.format(encoded_image), style={'width': '100%'})
 
     return ''  # Return empty string if n_clicks is None or 0
-        # return [
-        #     html.Div(f'Prediction: {prediction[0]}'),
-        #     shap_graph
-        # ]
+      
 
-    
-
-# Run server
 if __name__ == "__main__":
     server.run(debug=True)

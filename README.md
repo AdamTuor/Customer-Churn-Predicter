@@ -34,13 +34,17 @@ We developed a machine learning model using a Random Forest Classifier algorithm
 
 The training process involved several steps:
 
-1. Data Preprocessing: We applied data preprocessing techniques such as handling missing values, encoding categorical variables, and scaling numerical features.
+1.	Data Preprocessing: We handled missing values and addressed data types in the dataset, ensuring that the data was in a suitable format for analysis.
 
-2. Train-Test Split: The dataset was split into training and testing sets with a ratio of 80:20, respectively.
+2.	Train-Test Split: We split the dataset into training and testing sets, with an 80:20 ratio, to train the model on a portion of the data and evaluate its performance on unseen data.
 
-3. Model Training: We trained the Random Forest Classifier using the training data, optimizing the model parameters for improved performance.
+3.	Encoding Categorical Variables: We used OneHotEncoder to encode categorical variables, converting them into binary representations that could be understood by the machine learning model.
 
-4. Model Evaluation: We evaluated the model's performance using various metrics such as accuracy, precision, recall, and F1-score. The model demonstrated high accuracy and good performance in predicting customer churn.
+4.	Scaling Numerical Features: We employed StandardScaler to scale numerical features, standardizing them to have a mean of 0 and a standard deviation of 1. This helped ensure that all features contributed equally to the model's learning process.
+
+5.	Model Training: We trained a Random Forest Classifier using the training set, optimizing its parameters to learn patterns and relationships within the data.
+
+6.	Model Evaluation: We evaluated the performance of the trained model using various metrics such as accuracy, precision, recall, and F1-score. This allowed us to assess the model's predictive capability and measure its effectiveness in predicting customer churn.
 
 ### Integration into the Web Application
 

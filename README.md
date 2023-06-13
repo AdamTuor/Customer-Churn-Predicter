@@ -1,4 +1,4 @@
-### Telecommunication Churn Prediction
+## **Telecommunication Churn Prediction**
 
 ## Participants
 

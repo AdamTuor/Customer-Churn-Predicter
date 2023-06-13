@@ -1,6 +1,10 @@
-# Project Title
-
-Telecom Customer Churn Prediction and Web Application
+# Telecom Customer Churn Prediction and Web Application
+## Participants
+ - Adam Tuor
+ - Aditya Parmar
+ - Gurpreet Singh Dhameja
+ - Jasper Bowen Pang
+ - Marco Teh
 
 ## Table of Contents
 

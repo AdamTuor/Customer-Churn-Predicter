@@ -95,5 +95,3 @@ def preprocess_data(data):
 
     # Return processed data and transformed column names
     return processed_data, transformed_columns
-
-

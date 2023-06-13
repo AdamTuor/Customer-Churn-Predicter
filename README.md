@@ -49,7 +49,6 @@ Our web application provides a user-friendly interface for interacting with the 
 - Input form for capturing customer details
 - Real-time prediction of customer churn
 - Visualizations of prediction results
-- Interactive charts and graphs showcasing churn statistics
 - [Demo Website](https://customer-churn-predictor.onrender.com/)
 
 ## Installation
